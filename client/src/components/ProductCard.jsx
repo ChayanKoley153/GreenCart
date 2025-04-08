@@ -1,12 +1,16 @@
 import React from "react";
 import { assets } from "../assets/assets";
 import { useAppContext } from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
     const { currency, addToCart, removeFromCart, cartItems } = useAppContext();
 
+    const navigate = useNavigate();
+
     return product && (
-        <div className="border border-gray-300 rounded-2xl p-4 bg-white shadow-sm hover:shadow-md transition-all duration-300 w-full max-w-[240px]">
+        <div onClick={()=> {navigate(`/products/${product.category.toLowerCase()}/${product._id}`); scrollTo(0,0)}} 
+        className="border border-gray-300 rounded-2xl p-4 bg-white shadow-sm hover:shadow-md transition-all duration-300 w-full max-w-[240px]">
             <div className="group cursor-pointer flex items-center justify-center mb-3">
                 <img
                     className="group-hover:scale-105 transition-transform duration-200 h-32 object-contain"
